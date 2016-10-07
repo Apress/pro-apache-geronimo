@@ -1,0 +1,45 @@
+<project name="studentBMP" default="build"> 
+
+  <property name="project.name" value="studentBMP"/> 
+  <property name="project.version" value="1.0"/>
+
+  <import file="../../build-common.xml"/>
+  
+  <target name="do-build">
+    <antcall target="build-war-ignoreEJBClasses"/>
+    <antcall target="build-ejb"/>
+  </target>
+  
+  <target name="build-war-ignoreEJBClasses" depends="compile" description="generate the war" > 
+   
+    <mkdir dir="stage"/>    
+    <copy todir="stage">
+      
+      <fileset dir="${src.docroot}">
+      </fileset>
+       
+    </copy>  
+    
+    
+    <mkdir dir="stage/WEB-INF"/>
+    <copy todir="stage/WEB-INF">
+      
+      <fileset dir="${conf}/WEB-INF">
+        <include name="*.xml"/>
+        <exclude name="web.xml"/>
+      </fileset>
+    </copy>
+  
+   
+    <war destfile="${dist}/${project.name}-${project.version}.war" webxml="${conf}/WEB-INF/web.xml" basedir="stage">
+          <classes dir="${build.classes}">
+            <include name="**/*Client.class"/>
+          </classes>
+          <lib dir="${lib}"/>
+    </war>
+      
+      
+     <delete dir="stage"/>
+  </target>  
+  
+</project> 

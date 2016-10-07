@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openejb-jar	
+xmlns="http://www.openejb.org/xml/ns/openejb-jar"
+xmlns:naming="http://geronimo.apache.org/xml/ns/naming"
+xmlns:security="http://geronimo.apache.org/xml/ns/security"
+xmlns:sys="http://geronimo.apache.org/xml/ns/deployment"
+configId="StudentCMP"
+parentId="geronimo/j2ee-server/1.0/car">
+
+<cmp-connection-factory>
+  <resource-link>mydbpool</resource-link>
+</cmp-connection-factory>
+
+
+ <enterprise-beans>
+         <entity>
+                 <ejb-name>StudentCMPEJB</ejb-name>
+                 <jndi-name>ejb/StudentCMP</jndi-name>
+
+                 <table-name>stud</table-name>
+
+                 <cmp-field-mapping>
+                       <cmp-field-name>firstName</cmp-field-name>
+                       <table-column>fname</table-column>
+                 </cmp-field-mapping>
+
+                 <cmp-field-mapping>
+                       <cmp-field-name>lastName</cmp-field-name>
+                       <table-column>lname</table-column>
+                 </cmp-field-mapping>
+
+                 <cmp-field-mapping>
+                       <cmp-field-name>marks</cmp-field-name>
+                       <table-column>marks</table-column>
+                 </cmp-field-mapping>
+                 <primkey-field>firstName</primkey-field>
+
+          </entity>
+</enterprise-beans>
+
+</openejb-jar>

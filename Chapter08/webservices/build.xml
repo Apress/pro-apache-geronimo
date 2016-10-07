@@ -1,0 +1,74 @@
+
+<project name="calculatorWS" default="build"> 
+
+  <property name="project.name" value="calculatorWS"/> 
+  <property name="project.version" value="1.0"/>
+  
+  <import file="../../build-common.xml"/>
+  
+  <target name="do-build">
+    <antcall target="build-war-includeWSDL"/>   
+
+  </target>
+
+  <target name="build-war-includeWSDL" depends="compile" description="generate the war" > 
+   
+    <mkdir dir="stage"/>    
+    <copy todir="stage">
+      
+      <fileset dir="${src.docroot}">
+      </fileset>
+       
+    </copy>  
+    
+    
+    <mkdir dir="stage/WEB-INF"/>
+    <copy todir="stage/WEB-INF">
+      
+      <fileset dir="${conf}/WEB-INF">
+        <include name="*.xml"/>
+        <exclude name="web.xml"/>
+      </fileset>
+    </copy>
+    
+    <mkdir dir="stage/WEB-INF/wsdl"/>
+    <copy todir="stage/WEB-INF/wsdl">
+      
+      <fileset dir="${conf}/WEB-INF/wsdl">
+        <include name="*.wsdl"/>
+      </fileset>
+    </copy>    
+  
+   
+    <war destfile="${dist}/${project.name}-${project.version}.war" webxml="${conf}/WEB-INF/web.xml" basedir="stage">
+          <classes dir="${build.classes}"/>
+          <lib dir="${lib}"/>
+    </war>
+      
+      
+     <delete dir="stage"/>
+  </target>   
+  <target name="runClient" depends="build-war,jar-classes">
+  
+    <java classname="CalculatorClient" fork="true" >
+    
+                    
+      <classpath>
+        <fileset dir="${lib}">
+          <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${commonLib}">
+          <include name="*.jar"/>
+        </fileset> 
+        <fileset dir="dist">
+          <include name="*.jar"/>
+        </fileset>         
+        <pathelement path="${java.class.path}/"/>
+        
+      </classpath>
+            
+    </java>
+
+  </target> 
+
+</project> 

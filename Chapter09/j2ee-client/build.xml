@@ -1,0 +1,15 @@
+<project name="studentJ2EEClient" default="build"> 
+
+  <property name="project.name" value="studentJ2EEClient"/> 
+  <property name="project.version" value="1.0"/>
+  <property name="main-class" value="samples.client.student.StudentClient"/>
+
+  <import file="../../build-common.xml"/>
+  
+  <target name="do-build">
+    <antcall target="build-j2ee-client"/>
+    
+  </target>
+  
+  
+</project> 

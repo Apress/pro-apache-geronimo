@@ -1,0 +1,31 @@
+<!DOCTYPE web-app PUBLIC   "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"  
+  "http://java.sun.com/dtd/web-app_2_4.dtd">
+<web-app>
+  <display-name>Connector Client</display-name>
+  <description>Connector Client</description>
+  
+
+    
+  <servlet>
+     <servlet-name>frontController</servlet-name>
+     <servlet-class>FrontController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+     <servlet-name>frontController</servlet-name>
+     <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+        <resource-ref>
+                <res-ref-name>mySampleConnectionFactory</res-ref-name>
+                <res-type>samples.connectors.outbound.SampleConnectionFactory</res-type>
+                <!--<res-type>javax.sql.DataSource</res-type>-->
+                <res-auth>Container</res-auth>
+                <res-sharing-scope>Shareable</res-sharing-scope>
+        </resource-ref> 
+        
+  
+
+</web-app>

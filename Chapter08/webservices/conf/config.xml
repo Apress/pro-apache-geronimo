@@ -1,0 +1,6 @@
+<configuration xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/config">
+	<service name="CalculatorService" targetNamespace="http://samples.ws.web" typeNamespace="http://samples.ws.web" packageName="samples.ws.web">
+		<interface name="samples.ws.web.Calculator" servantName="samples.ws.web.CalculatorImpl">
+		</interface>
+	</service>
+</configuration>

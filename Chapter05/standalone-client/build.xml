@@ -1,0 +1,32 @@
+<project name="welcome" default="build"> 
+
+  <property name="project.name" value="studentClient"/> 
+  <property name="project.version" value="1.0"/>
+
+  <import file="../../build-common.xml"/>
+  
+  <target name="do-build">
+    <antcall target="jar-classes"/>
+    
+  </target>
+  
+  <target name="run" depends="do-build">
+    <java classname="samples.client.student.StudentClient">
+
+    <classpath>
+      <fileset dir="${commonLib}">
+        <include name="*.jar"/>
+      </fileset>      
+      <fileset dir="lib">
+        <include name="*.jar"/>
+      </fileset>              
+      <fileset dir="dist">
+        <include name="*.jar"/>
+      </fileset>                          
+      <pathelement path="${java.class.path}"/>
+    </classpath>
+    </java>
+  </target>
+  
+  
+</project> 

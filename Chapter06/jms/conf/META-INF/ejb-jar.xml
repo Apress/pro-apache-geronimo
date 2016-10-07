@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <display-name>JMS Client MDB</display-name>
+  <enterprise-beans>
+    <message-driven>
+      <display-name>JMSClientMDB</display-name>
+      <ejb-name>JMSClientMDB</ejb-name>
+      <ejb-class>samples.jms.client.mdb.JMSClientMDB</ejb-class>
+      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <transaction-type>Container</transaction-type>
+      <activation-config>
+        <activation-config-property>
+	   <activation-config-property-name>destination</activation-config-property-name>
+	   <activation-config-property-value>SampleQueue</activation-config-property-value>
+        </activation-config-property>
+        <activation-config-property>
+           <activation-config-property-name>destinationType</activation-config-property-name>
+	   <activation-config-property-value>javax.jms.Queue</activation-config-property-value>
+        </activation-config-property>
+      </activation-config>
+    </message-driven>   
+  </enterprise-beans>
+</ejb-jar>

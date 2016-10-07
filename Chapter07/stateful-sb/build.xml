@@ -1,0 +1,95 @@
+<project name="userMgmtStateful" default="build"> 
+
+  <property name="project.name" value="userMgmtStateful"/> 
+  <property name="project.version" value="1.0"/>
+  
+  <import file="../../build-common.xml"/>
+  
+  <target name="do-build">
+    <antcall target="build-ear"/>
+  </target>
+  
+
+  <target name="build-war-ignoreEJBClasses" depends="compile" description="generate the war" > 
+   
+    <mkdir dir="stage"/>    
+    <copy todir="stage">
+      
+      <fileset dir="${src.docroot}">
+      </fileset>
+       
+    </copy>  
+    
+    
+    <mkdir dir="stage/WEB-INF"/>
+    <copy todir="stage/WEB-INF">
+      
+      <fileset dir="${conf}/WEB-INF">
+        <include name="*.xml"/>
+        <exclude name="web.xml"/>
+      </fileset>
+    </copy>
+  
+   
+    <war destfile="${dist}/${project.name}-${project.version}.war" webxml="${conf}/WEB-INF/web.xml" basedir="stage">
+          <classes dir="${build.classes}">
+            <include name="**/*Client.class"/>
+          </classes>
+          <lib dir="${lib}"/>
+    </war>
+      
+      
+     <delete dir="stage"/>
+  </target>  
+  
+
+  
+   <target name="build-ear" depends="build-war-ignoreEJBClasses,build-ejb" description="generate the ejb jar" > 
+   
+    <mkdir dir="stage"/>
+    <mkdir dir="dd"/>
+    <mkdir dir="stage/META-INF"/>
+    
+    <copy todir="stage">
+      
+      <fileset dir="${dist}">
+        <include name="*.war"/>
+        <include name="*.jar"/>
+      </fileset>
+        
+    </copy>   
+    
+    <copy todir="stage/META-INF">
+      
+      <fileset dir="${conf}">
+        <include name="application.xml"/>
+        <include name="geronimo-application.xml"/>
+        
+      </fileset>
+                
+      
+    </copy>
+    
+    <copy todir="stage/dd">
+      
+      <fileset dir="${conf}">
+        <exclude name="**/META-INF"/>
+        <exclude name="**/WEB-INF"/>      
+        <exclude name="**/META-INF/*"/>
+        <exclude name="**/WEB-INF/*"/>
+        <exclude name="application.xml"/>
+        <exclude name="geronimo-application.xml"/>        
+      </fileset>
+                
+      
+    </copy>   
+  
+   
+    <jar jarfile="${dist}/${project.name}-${project.version}.ear" basedir="stage"/> 
+      
+      <delete dir="stage"/>
+
+     
+  </target>     
+  
+</project> 

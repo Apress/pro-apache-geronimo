@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+ <web-app xmlns="http://geronimo.apache.org/xml/ns/web" 
+        xmlns:naming="http://geronimo.apache.org/xml/ns/naming" 
+        xmlns:sec="http://geronimo.apache.org/xml/ns/security" 
+        configId="sample.sampleWS" parentId="geronimo/j2ee-server/1.0/car">
+  
+  <context-root>sampleWS</context-root>
+  <context-priority-classloader>true</context-priority-classloader>
+  
+ <!-- shows how to resolve a service reference
+  <service-ref xmlns="http://geronimo.apache.org/xml/ns/naming">
+    <service-ref-name>service/GreetingSvc</service-ref-name>
+    <port>
+      <port-name>GreetingPort</port-name>
+      <protocol>http</protocol>
+      <host>localhost</host>
+      <port>8080</port>
+      <uri>/GreetingSvc/GreetingService</uri>
+      
+    </port>
+  </service-ref>
+  -->
+  
+</web-app>

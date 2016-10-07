@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="GreetingService" targetNamespace="http://samples.usermgmt" xmlns:tns="http://samples.usermgmt" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types/>
+  <message name="Greeting_sayGreeting">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="Greeting_sayGreetingResponse">
+    <part name="result" type="xsd:string"/></message>
+  <portType name="Greeting">
+    <operation name="sayGreeting" parameterOrder="String_1">
+      <input message="tns:Greeting_sayGreeting"/>
+      <output message="tns:Greeting_sayGreetingResponse"/></operation></portType>
+  <binding name="GreetingBinding" type="tns:Greeting">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="sayGreeting">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://samples.usermgmt"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://samples.usermgmt"/></output></operation></binding>
+  <service name="GreetingService">
+    <port name="GreetingPort" binding="tns:GreetingBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port></service></definitions>

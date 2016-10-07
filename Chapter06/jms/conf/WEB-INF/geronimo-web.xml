@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+ <web-app xmlns="http://geronimo.apache.org/xml/ns/web" 
+        xmlns:naming="http://geronimo.apache.org/xml/ns/naming" 
+        xmlns:sec="http://geronimo.apache.org/xml/ns/security" 
+        configId="JMSClient" parentId="geronimo/j2ee-server/1.0/car">
+ 	
+ 	<context-root>JMSClient</context-root>
+ 	<context-priority-classloader>true</context-priority-classloader>
+ 	
+        <resource-ref>
+                <ref-name>jms/myJMSConnectionFactory</ref-name>
+                <resource-link>SampleConnectionFactory</resource-link>
+        </resource-ref>
+        <resource-env-ref>
+                <ref-name>queue/myQueue</ref-name>
+                <message-destination-link>SampleQueue</message-destination-link>
+        </resource-env-ref>
+
+ 	
+</web-app>

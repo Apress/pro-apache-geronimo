@@ -1,0 +1,18 @@
+<application-client
+xmlns="http://geronimo.apache.org/xml/ns/j2ee/application-client"
+xmlns:naming="http://geronimo.apache.org/xml/ns/naming"
+xmlns:security="http://geronimo.apache.org/xml/ns/security"
+xmlns:sys="http://geronimo.apache.org/xml/ns/deployment"
+configId="sample/myclient/serverConfigID"
+clientConfigId="sample/myclient/clientConfigId"
+parentId="geronimo/j2ee-server/1.0/car"
+clientParentId="geronimo/client/1.0/car">
+
+  <ejb-ref>
+    <ref-name>ejb/cmpStudent</ref-name>
+
+    <target-name>geronimo.server:EJBModule=StudentCMP,J2EEApplication=null,J2EEServer=geronimo,j2eeType=EntityBean,name=StudentCMPEJB</target-name>
+  </ejb-ref>
+
+</application-client>
+

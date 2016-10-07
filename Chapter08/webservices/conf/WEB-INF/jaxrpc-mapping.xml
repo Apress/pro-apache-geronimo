@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+<package-mapping>
+<package-type>samples.usermgmt</package-type>
+<namespaceURI>http://samples.usermgmt</namespaceURI>
+</package-mapping>
+<package-mapping>
+<package-type>samples.usermgmt</package-type>
+<namespaceURI>http://samples.usermgmt</namespaceURI>
+</package-mapping>
+<service-interface-mapping>
+<service-interface>samples.usermgmt.GreetingService</service-interface>
+<wsdl-service-name xmlns:serviceNS="http://samples.usermgmt">serviceNS:GreetingService</wsdl-service-name>
+<port-mapping>
+<port-name>GreetingPort</port-name>
+<java-port-name>GreetingPort</java-port-name>
+</port-mapping>
+</service-interface-mapping>
+<service-endpoint-interface-mapping>
+<service-endpoint-interface>samples.usermgmt.Greeting</service-endpoint-interface>
+<wsdl-port-type xmlns:portTypeNS="http://samples.usermgmt">portTypeNS:Greeting</wsdl-port-type>
+<wsdl-binding xmlns:bindingNS="http://samples.usermgmt">bindingNS:GreetingBinding</wsdl-binding>
+<service-endpoint-method-mapping>
+<java-method-name>sayGreeting</java-method-name>
+<wsdl-operation>sayGreeting</wsdl-operation>
+<method-param-parts-mapping>
+<param-position>0</param-position>
+<param-type>java.lang.String</param-type>
+<wsdl-message-mapping>
+<wsdl-message xmlns:wsdlMsgNS="http://samples.usermgmt">wsdlMsgNS:Greeting_sayGreeting</wsdl-message>
+<wsdl-message-part-name>String_1</wsdl-message-part-name>
+<parameter-mode>IN</parameter-mode>
+</wsdl-message-mapping>
+</method-param-parts-mapping>
+<wsdl-return-value-mapping>
+<method-return-value>java.lang.String</method-return-value>
+<wsdl-message xmlns:wsdlMsgNS="http://samples.usermgmt">wsdlMsgNS:Greeting_sayGreetingResponse</wsdl-message>
+<wsdl-message-part-name>result</wsdl-message-part-name>
+</wsdl-return-value-mapping>
+</service-endpoint-method-mapping>
+</service-endpoint-interface-mapping>
+</java-wsdl-mapping>

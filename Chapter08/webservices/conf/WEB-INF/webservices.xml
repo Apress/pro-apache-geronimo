@@ -1,0 +1,18 @@
+<webservices xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://www.ibm.com/webservices/xsd/j2ee_web_services_1_1.xsd" version="1.1">
+	<webservice-description>
+		<webservice-description-name>Calculator Web Service
+		</webservice-description-name>
+		<wsdl-file>WEB-INF/wsdl/CalculatorService.wsdl</wsdl-file>
+		<jaxrpc-mapping-file>WEB-INF/server-jaxrpc-mapping.xml</jaxrpc-mapping-file>
+		<port-component>
+			<port-component-name>Calculator</port-component-name>
+			<wsdl-port>CalculatorPort</wsdl-port>
+			<service-endpoint-interface>
+				samples.ws.web.Calculator
+			</service-endpoint-interface>
+			<service-impl-bean>
+				<servlet-link>CalculatorServlet</servlet-link>
+			</service-impl-bean>
+		</port-component>
+	</webservice-description>
+</webservices>

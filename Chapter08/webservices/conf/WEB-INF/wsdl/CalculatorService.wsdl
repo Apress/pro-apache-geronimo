@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="CalculatorService" targetNamespace="http://samples.ws.web" xmlns:tns="http://samples.ws.web" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types/>
+  <message name="Calculator_add">
+    <part name="int_1" type="xsd:int"/>
+    <part name="int_2" type="xsd:int"/></message>
+  <message name="Calculator_addResponse">
+    <part name="result" type="xsd:int"/></message>
+  <portType name="Calculator">
+    <operation name="add" parameterOrder="int_1 int_2">
+      <input message="tns:Calculator_add"/>
+      <output message="tns:Calculator_addResponse"/></operation></portType>
+  <binding name="CalculatorBinding" type="tns:Calculator">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="add">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://samples.ws.web"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://samples.ws.web"/></output></operation></binding>
+  <service name="CalculatorService">
+    <port name="CalculatorPort" binding="tns:CalculatorBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port></service></definitions>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"  version="2.1">
+<enterprise-beans>
+    <entity>
+          <ejb-name>StudentCMPEJB</ejb-name>
+          <home>samples.cmp.student.StudentHome</home>
+          <remote>samples.cmp.student.Student</remote>
+          <ejb-class>samples.cmp.student.StudentBean</ejb-class>
+          <persistence-type>Container</persistence-type>
+          <!--<prim-key-class>samples.cmp.student.StudentPKey</prim-key-class>-->
+          <prim-key-class>java.lang.String</prim-key-class>
+          <reentrant>false</reentrant>
+          <cmp-version>2.x</cmp-version>
+          <abstract-schema-name>StudentCMPBean</abstract-schema-name>
+
+          <cmp-field><field-name>firstName</field-name></cmp-field>
+          <cmp-field><field-name>lastName</field-name></cmp-field>
+          <cmp-field><field-name>marks</field-name></cmp-field>
+          <primkey-field>firstName</primkey-field>
+
+          <query>
+          	<query-method>
+                	<method-name>findAll</method-name>
+			<method-params/>
+                </query-method>
+		<ejb-ql>
+			<![CDATA[SELECT OBJECT(a) from StudentCMPBean AS a]]>
+		</ejb-ql>
+          </query>
+         
+          <query>
+		<query-method>
+			<method-name>ejbSelectTotalCount</method-name>
+			<method-params/>
+		</query-method>
+		<ejb-ql>
+			<![CDATA[SELECT COUNT(a.firstName) from StudentCMPBean AS a]]>
+		</ejb-ql>
+          </query>
+         
+          <query>
+		<query-method>
+			<method-name>ejbSelectPassCount</method-name>
+			<method-params/>
+		</query-method>
+		<ejb-ql>
+			<![CDATA[SELECT COUNT(a.firstName) from StudentCMPBean AS a where a.marks>=40]]>
+		</ejb-ql>
+          </query> 
+          
+       
+
+   </entity>
+
+</enterprise-beans>
+
+<assembly-descriptor>
+<!--
+    <container-transaction>
+         <method>
+                <ejb-name>StudentCMPEJB</ejb-name>
+                <method-intf>Remote</method-intf>
+                <method-name>*</method-name>
+         </method>
+         <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    -->
+</assembly-descriptor>
+
+</ejb-jar>

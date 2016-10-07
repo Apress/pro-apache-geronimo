@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector xmlns="http://geronimo.apache.org/xml/ns/j2ee/connector" version="1.5" configId="SampleResourceAdapter" parentId="geronimo/j2ee-server/1.0/car">
+
+<!--<dependency><uri>sampleConnector/jars/SampleConnectorAPI.jar</uri></dependency>-->
+
+<resourceadapter>
+
+  <resourceadapter-instance>
+    <resourceadapter-name>SampleResourceAdapterInstance</resourceadapter-name>
+    <workmanager><gbean-link>DefaultWorkManager</gbean-link></workmanager>
+  </resourceadapter-instance>
+
+
+  <outbound-resourceadapter>
+    <connection-definition>
+      <connectionfactory-interface>samples.connectors.outbound.SampleConnectionFactory
+      </connectionfactory-interface>
+      <connectiondefinition-instance>
+        <name>MySampleConnectionFactory</name>
+        <connectionmanager>
+          <no-transaction/>
+          <single-pool>
+                 <max-size>10</max-size>
+            <min-size>0</min-size>
+            <blocking-timeout-milliseconds>5000</blocking-timeout-milliseconds>
+            <idle-timeout-minutes>0</idle-timeout-minutes>
+            <match-one/>
+          </single-pool>
+        </connectionmanager>
+        <global-jndi-name>sra/scf</global-jndi-name>
+      </connectiondefinition-instance>
+    </connection-definition>
+      </outbound-resourceadapter>
+</resourceadapter>
+
+ </connector>

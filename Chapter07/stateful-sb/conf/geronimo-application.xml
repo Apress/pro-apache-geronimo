@@ -1,0 +1,14 @@
+<application xmlns="http://geronimo.apache.org/xml/ns/j2ee/application" 
+configId="MyApp" parentId="geronimo/j2ee-server/1.0/car">
+
+  <module>
+    <ejb>userMgmtStateful-1.0.jar</ejb>
+    <alt-dd>dd/EJBs-geronimo-plan.xml</alt-dd>
+  </module>
+
+  <module>
+    <web>userMgmtStateful-1.0.war</web>
+    <alt-dd>dd/webApp-geronimo-plan.xml</alt-dd>
+  </module>
+
+</application>

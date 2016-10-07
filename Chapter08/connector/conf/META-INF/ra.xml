@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<connector xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd" version="1.5">
+    <description>Sample adapter </description>
+    <display-name>SampleResourceAdapter</display-name>
+    <icon></icon>
+    <vendor-name>Sample</vendor-name>
+    <eis-type>SAMPLE</eis-type>
+    <resourceadapter-version>1.5</resourceadapter-version>
+
+    <resourceadapter>
+        <resourceadapter-class>samples.connectors.ResourceAdapterImpl</resourceadapter-class>
+        <outbound-resourceadapter>
+            <connection-definition>
+                <managedconnectionfactory-class>samples.connectors.outbound.ManagedConnectionFactoryImpl</managedconnectionfactory-class>
+                <connectionfactory-interface>samples.connectors.outbound.SampleConnectionFactory</connectionfactory-interface>
+                <connectionfactory-impl-class>samples.connectors.outbound.SampleConnectionFactoryImpl</connectionfactory-impl-class>
+                <connection-interface>samples.connectors.outbound.SampleConnection</connection-interface>
+                <connection-impl-class>samples.connectors.outbound.SampleConnectionImpl</connection-impl-class>
+            </connection-definition>
+            <transaction-support>NoTransaction</transaction-support>
+	    <!--<authentication-mechanism>
+                <authentication-mechanism-type>BasicPassword</authentication-mechanism-type>
+                <credential-interface>javax.resource.spi.security.PasswordCredential</credential-interface>
+            </authentication-mechanism> -->
+            <reauthentication-support>false</reauthentication-support>
+        </outbound-resourceadapter>
+        <inbound-resourceadapter>
+            <messageadapter>
+                <messagelistener>
+                    <messagelistener-type>samples.connectors.inbound.SampleMessageListener</messagelistener-type>
+                    <activationspec>
+                        <activationspec-class>samples.connectors.inbound.ActivationSpecImpl</activationspec-class>
+                        <required-config-property>
+                            <config-property-name>msg</config-property-name>
+                        </required-config-property>
+                        <required-config-property>
+                            <config-property-name>interval</config-property-name>
+                        </required-config-property>
+                    </activationspec>
+                </messagelistener>
+            </messageadapter>
+        </inbound-resourceadapter>        
+    </resourceadapter>
+</connector>

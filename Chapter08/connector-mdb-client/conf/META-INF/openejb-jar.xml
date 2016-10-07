@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openejb-jar
+xmlns="http://www.openejb.org/xml/ns/openejb-jar"
+xmlns:naming="http://geronimo.apache.org/xml/ns/naming"
+xmlns:security="http://geronimo.apache.org/xml/ns/security"
+xmlns:sys="http://geronimo.apache.org/xml/ns/deployment"
+configId="ConnectorMDBClient"
+parentId="SampleResourceAdapter">
+	<enterprise-beans>
+		<message-driven>
+			<ejb-name>SampleMDB</ejb-name>
+			<resource-adapter>
+				<resource-link>SampleResourceAdapterInstance</resource-link>
+			</resource-adapter>
+			
+		</message-driven>
+	</enterprise-beans>
+</openejb-jar>

@@ -1,0 +1,13 @@
+<project name="JMSClient" default="build"> 
+
+  <property name="project.name" value="JMSClient"/> 
+  <property name="project.version" value="1.0"/>
+
+  <import file="../../build-common.xml"/>
+  
+  <target name="do-build">
+    <antcall target="build-war"/>
+    <antcall target="build-ejb"/>
+  </target>
+  
+</project> 

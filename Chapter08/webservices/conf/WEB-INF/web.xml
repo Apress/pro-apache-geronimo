@@ -1,0 +1,45 @@
+<!DOCTYPE web-app PUBLIC   "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"  
+  "http://java.sun.com/dtd/web-app_2_4.dtd">
+<web-app>
+  <display-name>WS Web App</display-name>
+  <description>Web services Web ApplicationHello World Web Application</description>
+  
+
+    
+  <servlet>
+     <servlet-name>CalculatorServlet</servlet-name>
+     <servlet-class>samples.ws.web.CalculatorImpl</servlet-class>
+  </servlet>
+
+<!-- a sample web service client using a service ref definition
+  <servlet>
+     <servlet-name>WSClientServlet</servlet-name>
+     <servlet-class>samples.ws.web.client.WSClientServlet</servlet-class>
+  </servlet>  
+-->  
+
+  <servlet-mapping>
+     <servlet-name>CalculatorServlet</servlet-name>
+     <url-pattern>/calculatorService</url-pattern>
+  </servlet-mapping>
+
+<!-- a sample web service client using a service ref definition
+  <servlet-mapping>
+     <servlet-name>WSClientServlet</servlet-name>
+     <url-pattern>testServletClient</url-pattern>
+  </servlet-mapping>
+-->
+
+<!-- shows how to define a service reference 
+  <service-ref>
+    <service-ref-name>service/GreetingSvc</service-ref-name>
+    <service-interface>javax.xml.rpc.Service</service-interface>
+    <wsdl-file>WEB-INF/wsdl/GreetingService.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>WEB-INF/jaxrpc-mapping.xml</jaxrpc-mapping-file>
+    <service-qname xmlns:ns="http://samples.usermgmt">
+      ns:GreetingService
+    </service-qname>
+  </service-ref>  
+  -->
+  
+</web-app>

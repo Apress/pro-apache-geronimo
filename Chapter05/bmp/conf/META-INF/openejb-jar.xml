@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openejb-jar	
+xmlns="http://www.openejb.org/xml/ns/openejb-jar"
+xmlns:naming="http://geronimo.apache.org/xml/ns/naming"
+xmlns:security="http://geronimo.apache.org/xml/ns/security"
+xmlns:sys="http://geronimo.apache.org/xml/ns/deployment"
+configId="StudentBMP"
+parentId="geronimo/j2ee-server/1.0/car">
+ <enterprise-beans>
+         <entity>
+                 <ejb-name>StudentBMPEJB</ejb-name>
+                 <jndi-name>ejb/Student</jndi-name>
+                 <naming:resource-ref>
+                        <naming:ref-name> jdbc/mydbpool </naming:ref-name>
+                        <naming:resource-link>mydbpool</naming:resource-link>
+                 </naming:resource-ref>
+         </entity>
+</enterprise-beans>
+</openejb-jar>

@@ -1,0 +1,47 @@
+
+ <project name="sampleConnector" default="build"> 
+
+  <property name="project.name" value="sampleConnector"/> 
+  <property name="project.version" value="1.0"/>
+  
+  <import file="../../build-common.xml"/>
+  
+  <target name="do-build">
+    <antcall target="build-rar"/>   
+
+  </target>  
+   <target name="build-rar" depends="compile" description="generate the RAR" > 
+   
+    <mkdir dir="stage"/>
+    <mkdir dir="stage/META-INF"/>
+    
+
+    
+    <copy todir="stage/META-INF">
+      
+      <fileset dir="${conf}/META-INF">
+        
+        <include name="ra.xml"/>
+        <include name="geronimo-ra.xml"/>
+      </fileset>
+    </copy>
+  
+    <jar jarfile="stage/sampleConnector.jar"  basedir="${build.classes}"/>
+    <jar jarfile="${dist}/sampleRAR.rar"  basedir="stage"/>
+      <jar jarfile="${dist}/sampleConnectorClient.jar">
+        <fileset dir="${build.classes}">
+          <include name="**/SampleConnectionFactory.class"/>
+          <include name="**/SampleConnection.class"/>
+          <include name="**/SampleMessage.class"/>
+          <include name="**/SampleMessageListener.class"/>
+        </fileset>
+      </jar>
+            
+    <delete dir="stage"/>
+
+     
+  </target> 
+  
+  
+
+</project> 

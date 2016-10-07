@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openejb-jar
+xmlns="http://www.openejb.org/xml/ns/openejb-jar"
+xmlns:naming="http://geronimo.apache.org/xml/ns/naming"
+xmlns:security="http://geronimo.apache.org/xml/ns/security"
+xmlns:sys="http://geronimo.apache.org/xml/ns/deployment"
+configId="UserManagement"
+parentId="geronimo/j2ee-server/1.0/car">
+  <enterprise-beans>
+    <session>
+      <ejb-name>UserMgmt</ejb-name>
+      <jndi-name>ejb/UserMgmt</jndi-name>
+    </session>
+  </enterprise-beans>
+</openejb-jar>

@@ -1,0 +1,111 @@
+
+<project name="common" default="build" basedir="."> 
+
+  <property name="src" location="src"/>
+  <property name="src.java" location="src/java"/> 
+  <property name="src.docroot" location="src/docroot"/>
+  <property name="build" location="build"/> 
+  <property name="build.classes" location="build/classes"/>
+  <property name="build.lib" location="build/lib"/>
+  <property name="dist" location="dist"/>
+  <property name="conf" location="conf"/>
+  <property name="lib" location="lib"/>
+  <property name="commonLib" location="../../lib"/>
+  
+   <target name="init"> 
+    <tstamp/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${build.classes}"/>
+    <mkdir dir="${build.lib}"/>
+    <mkdir dir="${dist}"/>
+  </target>
+  
+  
+   <target name="compile" depends="init" description="compile the source " > 
+    <javac srcdir="${src}" destdir="${build.classes}">
+      <classpath>
+        <fileset dir="${lib}">
+          <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${commonLib}">
+          <include name="*.jar"/>
+        </fileset>        
+        <pathelement path="${java.class.path}/"/>
+      </classpath>
+    </javac>
+   </target>
+   
+ 
+  <target name="build" depends="compile" >
+    <antcall target="do-build" />
+  </target>
+  
+   
+  <target name="jar-classes" depends="compile" >
+      <delete>
+            <fileset dir="${dist}" includes="*.jar"/>
+      </delete>
+      <jar basedir="${build.classes}" jarfile="${dist}/${project.name}-${project.version}.jar">
+            <include name="**/*.class"/>
+      </jar>
+  </target>  
+  
+  <target name="build-war" depends="compile" description="generate the war" > 
+    <mkdir dir="stage"/>    
+    <copy todir="stage">
+      <fileset dir="${src.docroot}">
+      </fileset>
+    </copy>  
+    <mkdir dir="stage/WEB-INF"/>
+    <copy todir="stage/WEB-INF">
+      <fileset dir="${conf}/WEB-INF">
+        <include name="*.xml"/>
+        <exclude name="web.xml"/>
+      </fileset>
+    </copy>
+    <war destfile="${dist}/${project.name}-${project.version}.war" webxml="${conf}/WEB-INF/web.xml" basedir="stage">
+          <classes dir="${build.classes}"/>
+          <lib dir="${lib}"/>
+    </war>
+     <delete dir="stage"/>
+  </target> 
+
+
+   <target name="build-ejb" depends="compile" description="generate the ejb jar" > 
+    <mkdir dir="stage"/>
+    <mkdir dir="stage/META-INF"/>
+    <copy todir="stage">
+      <fileset dir="${build.classes}"/>
+    </copy>   
+    <copy todir="stage/META-INF">
+      <fileset dir="${conf}/META-INF"/>
+    </copy>
+    <jar jarfile="${dist}/${project.name}-${project.version}.jar" basedir="stage"/> 
+    <delete dir="stage"/>
+  </target> 
+  
+   <target name="build-j2ee-client" depends="compile" description="generate the J2EE client" > 
+    <mkdir dir="stage"/>
+    <mkdir dir="stage/META-INF"/>
+    <copy todir="stage">
+      <fileset dir="${build.classes}"/>
+    </copy>   
+    <copy todir="stage/META-INF">
+      <fileset dir="${conf}/META-INF"/>
+    </copy>
+    <jar jarfile="${dist}/${project.name}-${project.version}.jar" basedir="stage"> 
+      <manifest>
+        <attribute name="Main-Class" value="${main-class}"/>
+      </manifest>   
+    </jar>
+    <delete dir="stage"/>
+  </target>   
+  
+  
+  <target name="clean" description="clean up" >
+     <delete dir="${build.classes}"/>
+     <delete dir="${build.lib}"/>
+     <delete dir="${build}"/>
+     <delete dir="${dist}"/> 
+  </target> 
+</project> 
